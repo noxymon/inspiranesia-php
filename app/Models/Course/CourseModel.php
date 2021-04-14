@@ -5,14 +5,17 @@ namespace App\Models\Course;
 
 
 use App\Models\Course\Output\CourseOutput;
+use App\Repositories\CourseMemberAttendanceRepository;
 use App\Repositories\CourseRepository;
 
 class CourseModel
 {
     private CourseRepository $courseRepository;
+    private CourseMemberAttendanceRepository  $courseMemberAttendanceRepository;
 
-    public function __construct(CourseRepository $courseRepository) {
+    public function __construct(CourseRepository $courseRepository, CourseMemberAttendanceRepository $courseMemberAttendanceRepository) {
         $this->courseRepository = $courseRepository;
+        $this->courseMemberAttendanceRepository = $courseMemberAttendanceRepository;
     }
 
     public function getAllCourse(): array {
@@ -28,6 +31,7 @@ class CourseModel
 
     public function getCourseDetailBy(string $id): CourseOutput{
         $courseDetail = $this->courseRepository->find($id);
+        $this->courseMemberAttendanceRepository->getWhere();
         return $this->mapEntityToOutput($courseDetail);
     }
 
@@ -58,6 +62,27 @@ class CourseModel
         $courseOutput->webinarLink= $course->webinar_link;
         $courseOutput->floorImage = '/images/hp_display_'.rand(0,5).'.jpeg';
         $courseOutput->detailImage = '/images/cd_display_'.rand(0,5).'.jpeg';
+        $courseOutput->daysBeforeStartDate = $this->calculateIntervalFromNowToStart($course)->days;
+        $courseOutput->isAlreadyStart = $this->isCourseHasStarted($course);
         return $courseOutput;
+    }
+
+    private function calculateIntervalFromNowToStart($course)
+    {
+        $today = new \DateTime("now");
+        $courseStartDate = new \DateTime($course->course_start_date);
+        return date_diff($today, $courseStartDate, false);
+    }
+
+    private function isCourseHasStarted($course): bool
+    {
+        $isCourseHasStarted = false;
+        $now = new \DateTime("now");
+        $courseStartTime = new \DateTime($course->course_start_date." ".$course->course_start_time);
+        $courseEndTime = new \DateTime($course->course_end_date." ".$course->course_end_time);
+        if ($now >= $courseStartTime && $now < $courseEndTime) {
+            $isCourseHasStarted = true;
+        }
+        return $isCourseHasStarted;
     }
 }

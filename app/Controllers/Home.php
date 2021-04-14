@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Models\Course\CourseModel;
 use App\Repositories\CourseRepository;
+use CodeIgniter\Model;
 use CodeIgniter\RESTful\ResourcePresenter;
 
 class Home extends ResourcePresenter
@@ -14,7 +15,8 @@ class Home extends ResourcePresenter
     {
         helper('text');
         $courseRepository = new CourseRepository();
-        $this->model = new CourseModel($courseRepository);
+        $courseMemberAttendaceRepository = new CourseMemberAttendanceRepository();
+        $this->model = new CourseModel($courseRepository, $courseMemberAttendaceRepository);
     }
 
     public function index()
