@@ -103,10 +103,12 @@
                             Pendaftaran Sudah Ditutup
                         </button>
                     <?php endif ?>
-                    <button id="btnAlreadyJoined" class="btn btn-block btn-lg btn-success" style="<?= isAlreadyRegistered($courseDetail) ? '' : 'display: none'?> disabled>
-                        <span class="fa fa-check" role="status" aria-hidden="true"></span>
+                    <?php if( isAlreadyRegistered($courseDetail) ): ?>
+                        <button id="btnAlreadyJoined" class="btn btn-block btn-lg btn-success">
+                                <span class="fa fa-check" role="status" aria-hidden="true"></span>
                         Terdaftar
-                    </button>
+                        </button>
+                    <?php endif ?>
                     <?php if(isValidToStartClass($courseDetail)): ?>
                         <a href="@{${courseStartUrl}" id="btnStartCourse" class="btn btn-block btn-lg btn-danger">
                             <span class="fa fa-play-circle " role="status" aria-hidden="true"></span>
