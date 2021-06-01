@@ -42,6 +42,9 @@ $routes->get('/api/hash/(:segment)/generate', 'Api\Hash::generate/$1');
 
 $routes->get('/', 'Home::index');
 $routes->post('/login', 'Login::auth');
+
+$routes->get('/course/(:segment)/start', 'Course::start/$1');
+
 $routes->presenter('course');
 
 /*

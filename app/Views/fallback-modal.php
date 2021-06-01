@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="https://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
 <div class="modal fade" id="fallbackModal" tabindex="-1" role="dialog" aria-labelledby="fallbackModalLabel" aria-hidden="true" th:fragment="modal" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -24,5 +17,3 @@
         </div>
     </div>
 </div>
-</body>
-</html>
