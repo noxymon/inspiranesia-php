@@ -41,12 +41,8 @@
     <script defer src="/js/jquery.min.js"></script>
     <script defer src="/js/bootstrap.min.js"></script>
     <script async inline="javascript">
-        /*
-        <![CDATA[*/
-        var loginResponse = /*[[${loginResponse}]]*/ '{}';
-        var courseResult = /*[[${courseResult}]]*/ '{}';
-        /*]]
-    */
+        const loginResponse = <?= json_encode($loginResponse); ?>;
+        const courseResult = <?= json_encode($courseDetail)?>;
     </script>
     <script defer src="/js/course-detail.js"></script>
     <!-- Global site tag (gtag.js) - Google Analytics -->

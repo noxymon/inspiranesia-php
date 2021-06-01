@@ -3,8 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\Course\CourseModel;
+use App\Repositories\CourseMemberAttendanceRepository;
 use App\Repositories\CourseRepository;
-use CodeIgniter\Model;
 use CodeIgniter\RESTful\ResourcePresenter;
 
 class Course extends ResourcePresenter
@@ -28,10 +28,16 @@ class Course extends ResourcePresenter
 
     public function show($id = null)
     {
+        $session = session("loginResponse");
         $data = [
-            'courseDetail' =>  $this->model->getCourseDetailBy($id),
-            'loginResponse' => session("loginResponse")
+            'courseDetail' =>  $this->model->getCourseDetailByAndMember($id, $session->id),
+            'loginResponse' => $session
         ];
         echo view('course-detail', $data);
+    }
+
+    public function start($id){
+        $data = null;
+        echo view('course-start', $data);
     }
 }

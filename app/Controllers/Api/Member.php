@@ -5,13 +5,11 @@ namespace App\Controllers\Api;
 
 
 use App\Repositories\MemberRepository;
-use CodeIgniter\RESTful\ResourceController;
 
-class Member extends ResourceController
+class Member extends BaseApi
 {
 
     protected $model;
-    protected $format    = 'json';
 
     /**
      * Member constructor.

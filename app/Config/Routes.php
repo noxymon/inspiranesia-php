@@ -32,13 +32,16 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Home::index');
-$routes->post('/login', 'Login::auth');
 $routes->group('api', function($routes)
 {
     $routes->resource('Api\Course');
     $routes->resource('Api\Member');
 });
+$routes->post('/api/course/(:segment)/join', 'Api\Course::join/$1');
+$routes->get('/api/hash/(:segment)/generate', 'Api\Hash::generate/$1');
+
+$routes->get('/', 'Home::index');
+$routes->post('/login', 'Login::auth');
 $routes->presenter('course');
 
 /*

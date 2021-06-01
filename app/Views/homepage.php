@@ -33,11 +33,7 @@
     <script defer src="js/jquery.min.js"></script>
     <script defer src="js/bootstrap.bundle.min.js"></script>
     <script async inline="javascript">
-        /*
-        <![CDATA[*/
-        var loginResponse = /*[[${loginResponse}]]*/ '{}';
-        /*]]
-    */
+        const loginResponse = <?= json_encode($loginResponse); ?>;
     </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116347823-3"></script>

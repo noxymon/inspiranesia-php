@@ -7,12 +7,10 @@ namespace App\Controllers\Api;
 use App\Models\Course\CourseModel;
 use App\Repositories\CourseMemberAttendanceRepository;
 use App\Repositories\CourseRepository;
-use CodeIgniter\RESTful\ResourceController;
 
-class Course extends ResourceController
+class Course extends BaseApi
 {
     protected $model;
-    protected $format    = 'json';
 
     public function __construct()
     {
@@ -30,5 +28,21 @@ class Course extends ResourceController
     {
         $courseDetailById = $this->model->getCourseDetailBy($id);
         return $this->respond($courseDetailById);
+    }
+
+    public function join($id){
+        $hashValue = $this->request->getJsonVar("hash");
+        $memberId = $this->request->getJsonVar("memberId");
+        try {
+            if ($this->validateHash($hashValue, $memberId)) {
+                $success = $this->model->joinCourse($memberId, $id);
+                if(!$success){
+                    return $this->failResourceGone();
+                }
+                return $this->respondCreated();
+            }
+        } catch (response\InvalidHashException $e) {
+            return $this->failUnauthorized($e->getMessage());
+        }
     }
 }

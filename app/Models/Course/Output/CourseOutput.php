@@ -37,6 +37,7 @@ class CourseOutput
     public bool $isAlreadyStart = false;
     public bool $isOpenForRegistration = false;
     public int $daysBeforeStartDate = 0;
+    public int $daysBeforeCloseDate = 0;
 
     /**
      * CourseOutput constructor.

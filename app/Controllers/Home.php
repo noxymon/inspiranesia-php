@@ -3,8 +3,8 @@
 namespace App\Controllers;
 
 use App\Models\Course\CourseModel;
+use App\Repositories\CourseMemberAttendanceRepository;
 use App\Repositories\CourseRepository;
-use CodeIgniter\Model;
 use CodeIgniter\RESTful\ResourcePresenter;
 
 class Home extends ResourcePresenter
