@@ -1,0 +1,5 @@
+deployment:
+  tasks:
+  - export DEPLOYPATH=/home/insd7815/inspira_core
+  - /bin/cp -R app $DEPLOYPATH
+  - /bin/cp -R public $DEPLOYPATH
