@@ -106,7 +106,7 @@
                         </button>
                     <?php endif ?>
                     <?php if(isValidToStartClass($courseDetail)): ?>
-                        <a href="@{${courseStartUrl}" id="btnStartCourse" class="btn btn-block btn-lg btn-danger">
+                        <a href="<?= $courseDetail->courseStartUrl ?>" id="btnStartCourse" class="btn btn-block btn-lg btn-danger">
                             <span class="fa fa-play-circle " role="status" aria-hidden="true"></span>
                             Mulai Kelas
                         </a>

@@ -26,9 +26,17 @@ class Login extends ResourcePresenter
     {
         $isLoginFailed = session('isLoginFailed');
         $failedLoginMessage = session('failedLoginMessage');
+        $previousUrlParam = $this->request->getVar("prevUrl");
+
+        $previousUrl = "/";
+        if(!is_null($previousUrlParam)){
+            $previousUrl = $previousUrlParam;
+        }
+
         $data = [
             'isLoginFailed' => $isLoginFailed,
-            'failedLoginMessage' => $failedLoginMessage
+            'failedLoginMessage' => $failedLoginMessage,
+            'previousUrl' => $previousUrl
         ];
         echo view('login', $data);
     }
@@ -36,9 +44,10 @@ class Login extends ResourcePresenter
     public function auth(){
         $email = $this->request->getVar("email");
         $password = $this->request->getVar("password");
+        $previousUrlParam = $this->request->getVar("previousUrl");
         $memberOutput = $this->memberModel->auth($email, $password);
 
         session()->set('loginResponse', $memberOutput);
-        return redirect()->to("/");
+        return redirect()->to($previousUrlParam);
     }
 }

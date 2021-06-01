@@ -100,6 +100,7 @@ class CourseModel
         $courseOutput->daysBeforeStartDate = $this->calculateIntervalFromNowToStart($course);
         $courseOutput->isAlreadyStart = $this->isCourseHasStarted($course);
         $courseOutput->isOpenForRegistration = $this->isCourseOpenRegistration($course);
+        $courseOutput->courseStartUrl = $course->id."/start";
         return $courseOutput;
     }
 

@@ -32,6 +32,7 @@ class CourseOutput
     public $instructorPhoto;
     public $floorImage;
     public $detailImage;
+    public string $courseStartUrl;
     public int $registeredCount = 0;
     public bool $isAlreadyJoined = false;
     public bool $isAlreadyStart = false;

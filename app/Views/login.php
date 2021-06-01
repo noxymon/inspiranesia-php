@@ -56,6 +56,7 @@
                                     </div>
                                 <?php endif ?>
                                 <form action="/login/auth" method="POST" class="my-login-validation">
+                                    <input name="previousUrl" type="hidden" value="<?= $previousUrl ?>"/>
                                     <div class="form-group">
                                         <input name="email" type="email" class="form-control" value="" placeholder="email Address" required autofocus>
                                         <div class="invalid-feedback">
